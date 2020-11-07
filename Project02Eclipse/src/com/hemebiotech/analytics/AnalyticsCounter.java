@@ -9,34 +9,22 @@ public class AnalyticsCounter {
 
 	public static void main(String args[]) throws Exception {
 
-		// Initialization of list'symptoms
+		// Instantiation of list'symptoms
 		ReadSymptomDataFromFile listSymptoms = new ReadSymptomDataFromFile("symptoms.txt");
 		List<String> result = listSymptoms.GetSymptoms();
 
-		// Initialization of TreeMap to link symptom to his count
-		TreeMap<String, Integer> map = new TreeMap<String, Integer>();
-		Set<String> keys = map.keySet();
-
-		// Initialization of the file for result
+		// Instantiation of the file for result
 		FileWriter writer = new FileWriter("result.out.txt");
 
-		int countSymptom = 0;
-
-		// Loop to read symptom and add him and his count in the TreeMap
-		for (String symptom : result) {
-			countSymptom = 0;
-			for (String symptom1 : result) {
-				if (symptom1.equals(symptom)) {
-					countSymptom++;
-				}
-			}
-			map.put(symptom, countSymptom);
-		}
+		// Instantiation of counter of symptom
+		CountSymptom countSymptom = new CountSymptom();
+		TreeMap<String, Integer> listSymptomCheck = countSymptom.CounterMapSymptom(result);
+		Set<String> keys = listSymptomCheck.keySet();
 
 		// Loop to write in file result
 		for (String key : keys) {
-			System.out.println(key + ": " + map.get(key));
-			writer.write(key + ": " + map.get(key) + "\n");
+			System.out.println(key + ": " + listSymptomCheck.get(key));
+			writer.write(key + ": " + listSymptomCheck.get(key) + "\n");
 		}
 		writer.close();
 	}
