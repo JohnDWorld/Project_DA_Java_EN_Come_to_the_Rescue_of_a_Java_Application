@@ -5,10 +5,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeMap;
 
+/**
+ * Simple brute force implementation
+ *
+ * @author JohnDWorld
+ */
 public class WriteSymptomDataInFile implements ISymptomWriter {
 
 	private String filepath;
 
+	/**
+	 *
+	 * @param filepath a full or partial path to file where you want to write
+	 *                 symptom strings and his count integer, one per line.
+	 */
 	public WriteSymptomDataInFile(String filepath) {
 		this.filepath = filepath;
 	}
